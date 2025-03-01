@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, addToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 // const products = [
@@ -101,26 +101,6 @@ products.forEach((product) => {
         </div>`;
 });
 
-const addToCart = (productId, addedMessage, selectedQuantity) => {
-  let matchingItem;
-
-  cart.forEach((cartItem) => {
-    if (productId === cartItem.id) {
-      matchingItem = cartItem;
-    }
-  });
-
-  if (matchingItem) {
-    // matchingItem.quantity +=1;
-    matchingItem.quantity += selectedQuantity;
-  } else {
-    cart.push({
-      productId: productId,
-      // quantity : 1
-      quantity: selectedQuantity,
-    });
-  }
-};
 
 const addMessage = (addedMessage) => {
   if (addedMessage) {
