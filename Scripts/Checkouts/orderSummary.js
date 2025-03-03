@@ -2,11 +2,10 @@ import { cart, removeFromCart, updateCartQuantity,updateDeliveryOption } from ".
 import { products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { deliverOptions } from "../../data/deliveryOptions.js";
+import { deliverOptions, getdeliverOption } from "../../data/deliveryOptions.js";
 
 
 export const rederOrderSummary = () =>{
-
 
 
 let cartSummaryHtml = "";
@@ -75,9 +74,9 @@ cart.forEach((cartItem) => {
   const deliveryOptionId = cartItem.deliverOptionId;
 
   // Find the matching delivery option or set a default
-  const deliverOption =
-    deliverOptions.find((opt) => opt.id === deliveryOptionId) ||
-    deliverOptions[0];
+  const deliverOption = getdeliverOption(deliveryOptionId);
+    // deliverOptions.find((opt) => opt.id === deliveryOptionId) ||
+    // deliverOptions[0];
 
   // console.log("Selected deliverOption:", deliverOption);
 

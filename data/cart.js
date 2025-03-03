@@ -90,5 +90,6 @@ export function updateDeliveryOption(productId, deliverOptionId) {
   }
 
   cartItem.deliverOptionId = deliverOptionId;
+  saveToStorage();
  
 }
