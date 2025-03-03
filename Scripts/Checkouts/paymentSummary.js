@@ -3,7 +3,7 @@ import { getProduct } from "../../data/products.js";
 import { getdeliverOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
 
-export const rederPaymentSummary = () => {
+export const renderPaymentSummary = () => {
   let productPriceCents = 0;
   let shippingPriceCents = 0;
 
@@ -52,7 +52,7 @@ export const rederPaymentSummary = () => {
           <div class="payment-summary-row">
             <div>Estimated tax (10%):</div>
             <div class="payment-summary-money">
-              $${taxCents}
+              $${formatCurrency(taxCents)}
             </div>
           </div>
 
@@ -69,5 +69,5 @@ export const rederPaymentSummary = () => {
 
 
           document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHtml;
-          
+
 };
