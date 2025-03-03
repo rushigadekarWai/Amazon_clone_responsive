@@ -57,7 +57,7 @@ cart.forEach((cartItem) => {
     return html;
   };
 
-  // const deliveryOptionId = cartItem.deliverOptionId;
+  const deliveryOptionId = cartItem.deliverOptionId;
 
   // let deliverOption;
   // deliverOptions.forEach((option)=>{
@@ -66,23 +66,12 @@ cart.forEach((cartItem) => {
 
   //   }
   // });
-
-  // const today = dayjs();
-  // const deliveryDate = today.add(deliverOption.deliveryDays , 'days');
-  // const dateString = deliveryDate.format("dddd, MMMM, D");
-
-  const deliveryOptionId = cartItem.deliverOptionId;
-
-  // Find the matching delivery option or set a default
   const deliverOption = getdeliverOption(deliveryOptionId);
-    // deliverOptions.find((opt) => opt.id === deliveryOptionId) ||
-    // deliverOptions[0];
-
-  // console.log("Selected deliverOption:", deliverOption);
-
   const today = dayjs();
-  const deliveryDate = today.add(deliverOption.deliveryDays, "days");
-  const dateString = deliveryDate.format("dddd, MMMM D");
+  const deliveryDate = today.add(deliverOption.deliveryDays , 'days');
+  const dateString = deliveryDate.format("dddd, MMMM, D");
+
+ 
 
   cartSummaryHtml += `<div class="cart-item-container js-cart-item-container-${matchingProduct.id}" 
      data-product-id="${matchingProduct.id}"
@@ -196,11 +185,6 @@ document.querySelectorAll(".js-delivery-option").forEach((element) => {
 
   
 });
-
-
-
-
-
 
 
 }

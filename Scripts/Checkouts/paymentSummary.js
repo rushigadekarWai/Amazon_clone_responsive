@@ -4,6 +4,7 @@ import { getdeliverOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
 
 export const renderPaymentSummary = () => {
+  let totalQuantity = 0;
   let productPriceCents = 0;
   let shippingPriceCents = 0;
 
@@ -19,6 +20,12 @@ export const renderPaymentSummary = () => {
     }
   });
 
+  for(let i = 0 ; i < cart.length ; i++){
+    totalQuantity += cart[i].quantity;
+  }
+ 
+  
+
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
   const taxCents = totalBeforeTaxCents * 0.1;
   const totalCents = taxCents + totalBeforeTaxCents;
@@ -29,7 +36,7 @@ export const renderPaymentSummary = () => {
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (<span class="js-total-quantity">${totalQuantity}</span>):</div>
             <div class="payment-summary-money">
             $${formatCurrency(productPriceCents)}
             </div>
