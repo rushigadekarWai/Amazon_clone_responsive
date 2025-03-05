@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "javascript-amazon-project-main",
+			"path": ".."
+		},
+		{
+			"name": "jasmine-standalone-5.1.1",
+			"path": "C:/Users/RushikeshGadekar/Downloads/jasmine-standalone-5.1.1"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "javascript-amazon-project-main",
+		"workbench.commandPalette.experimental.suggestCommands": true
+	}
+}
