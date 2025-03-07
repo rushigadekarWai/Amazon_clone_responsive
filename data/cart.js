@@ -82,6 +82,32 @@ export function updateCartQuantity(productId, newQuantity) {
   }
 }
 
+document.querySelectorAll(".js-save-quantity").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const productId = event.target.dataset.productId;
+    const inputField = document.querySelector(`.js-quantity-input[data-product-id="${productId}"]`);
+    const newQuantity = parseInt(inputField.value);
+
+    if (isNaN(newQuantity) || newQuantity < 1) {
+      alert("Please enter a valid quantity (1 or more).");
+      return;
+    }
+
+    updateCartQuantity(productId, newQuantity);
+
+    // ✅ Update the displayed quantity in UI
+    document.querySelector(`.js-quantity-display[data-product-id="${productId}"]`).textContent = newQuantity;
+
+    // ✅ Hide the input box after saving
+    const quantityBox = document.querySelector(`.js-quantity-box[data-product-id="${productId}"]`);
+    quantityBox.style.display = "none";
+
+    // ✅ Refresh payment summary
+    renderPaymentSummary();
+  });
+});
+
+
 
 // export const updateDeliveryOption = (productId, deliverOptionId)=> {
 //   let matchingItem;
@@ -108,3 +134,24 @@ export function updateDeliveryOption(productId, deliverOptionId) {
   saveToStorage();
  
 }
+
+export const clearCart = () => {
+  cart.length = 0;  // Clears cart array in memory
+  localStorage.setItem("cart", JSON.stringify([]));
+  updateCartQuantityDisplay() // Clears stored cart
+};
+
+
+
+// checkout cart items
+
+export const updateCartQuantityDisplay = () => {
+  const cartQuantityElement = document.querySelector(".js-cart-quantity");
+  if (!cartQuantityElement) return;
+
+  // Calculate total quantity in cart
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  // Update the text content
+  cartQuantityElement.textContent = totalQuantity;
+};

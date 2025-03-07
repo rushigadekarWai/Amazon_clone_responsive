@@ -665,3 +665,25 @@ export const getProduct = (productId) => {
   return products.find(product => product.id === productId);
 };
 
+/*
+export let productss = [];
+
+function loadproducts() {
+const xhr = new XMLHttpRequest();
+
+xhr.addEventListener('load', ()=>{
+  productss = JSON.parse(xhr.response).map((productsDeatil) =>{
+    if(productsDeatil.type === 'clothing'){
+      return new Clothing(productsDeatil);
+    }
+    return new Product(productsDeatil);
+  })
+});
+
+
+xhr.open('GET', 'https://supersimplebackend.dev/products');
+xhr.send();
+}
+
+loadproducts();
+*/

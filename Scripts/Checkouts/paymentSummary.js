@@ -1,7 +1,8 @@
-import { cart } from "../../data/cart.js";
+import { cart, clearCart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getdeliverOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
+import { rederOrderSummary } from "./orderSummary.js";
 
 export const renderPaymentSummary = () => {
   let totalQuantity = 0;
@@ -20,11 +21,9 @@ export const renderPaymentSummary = () => {
     }
   });
 
-  for(let i = 0 ; i < cart.length ; i++){
+  for (let i = 0; i < cart.length; i++) {
     totalQuantity += cart[i].quantity;
   }
- 
-  
 
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
   const taxCents = totalBeforeTaxCents * 0.1;
@@ -70,11 +69,27 @@ export const renderPaymentSummary = () => {
             </div>
           </div>
 
-          <button class="place-order-button button-primary">
+          <button class="place-order-button button-primary js-place-order-btn">
            Place your order
           </button> `;
 
+  document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHtml;
+  document.querySelector(".js-place-order-btn").addEventListener("click", () => {
+    if (cart.length === 0) return;
 
-          document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHtml;
+    clearCart();
+    rederOrderSummary();
+    renderPaymentSummary();
 
+    document.querySelector(".js-order-summary").innerHTML = `
+      <p class="order-success-message" style="font-size: 18px; font-weight: bold; color: green; text-align: center; margin-top: 20px;">
+        🎉 Your order has been placed successfully!
+      </p>`;
+
+    setTimeout(() => {
+      rederOrderSummary();
+    }, 3000);
+  });
+
+  
 };

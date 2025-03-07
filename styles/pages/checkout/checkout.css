@@ -209,3 +209,14 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.quantity-box {
+  display: none;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+  position: absolute;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+

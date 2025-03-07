@@ -158,3 +158,11 @@
 .show-message{
   opacity: 1;
 }
+
+.order-success-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
